@@ -10,12 +10,13 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch('getData', 'https://jsonplaceholder.typicode.com/posts')
+  async asyncData() {
+    const data = await fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json());
+    return { data: data }
   },
   computed: {
     allPosts() {
-      return this.$store.getters['getPosts']
+      return this.data
     }
   }
 }
