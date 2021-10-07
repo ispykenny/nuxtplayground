@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>{{post.name}}</h1>
+    <p>User Name: {{post.username}}</p>
   </div>
 </template>
 
