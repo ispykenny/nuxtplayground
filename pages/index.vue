@@ -1,7 +1,7 @@
 <template>
   <div class="inner posts" >
     <div v-for="post in allPosts.items" :key="post.sys.id" class="posts__el">
-      <nuxt-link  :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">
+      
         <div class="preview" :style="`padding-bottom:${post.fields.featuredImage.fields.file.details.image.height / post.fields.featuredImage.fields.file.details.image.width * 100}%`">
           <img :src="post.fields.featuredImage.fields.file.url" :alt="`${post.fields.title} preview`"/>
         </div>
@@ -10,7 +10,7 @@
           <div v-html="htmlPost(post.fields.excerpt)" class="content__inner"></div>
            <nuxt-link class="cta" :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">Read More</nuxt-link>
         </div>
-      </nuxt-link>
+      
     </div>
   </div>
 </template>
