@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <div v-for="post in allPosts.items" :key="post.sys.id">
-      <nuxt-link :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">
-        <div>
-          <img :src="post.fields.featuredImage.fields.file.url" :alt="`${post.fields.title} preview`"/>
+  <div class="inner posts" >
+    <div v-for="post in allPosts.items" :key="post.sys.id" class="posts__el">
+      <nuxt-link  :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">
+        <img :src="post.fields.featuredImage.fields.file.url" :alt="`${post.fields.title} preview`"/>
+        <div class="content">
           <h4>{{post.fields.title}}</h4>
-          <div v-html="htmlPost(post.fields.excerpt)"></div>
+          <div v-html="htmlPost(post.fields.excerpt)" class="content__inner"></div>
+          <button>Read More</button>
         </div>
       </nuxt-link>
     </div>
@@ -50,3 +51,41 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+
+    img {
+      width: 100%;
+    }
+
+    &__el {
+      width: 48%;
+      margin-right: 4%;
+      background: #fff;
+
+      .content {
+        padding: 1em;
+      }
+
+      h4 {
+        margin-top: 0;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      a {
+        background: white;
+        display: inline-block;
+        text-decoration: none;
+        color: #444;
+        
+      }
+    }
+  
+  } 
+</style>

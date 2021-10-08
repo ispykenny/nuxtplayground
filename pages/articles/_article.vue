@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="inner">
     <div><nuxt-link to="/">Go Back</nuxt-link></div>
     <img :src="article.fields.featuredImage.fields.file.url" :alt="`${article.fields.title} preview`"/>
     <h1>{{article.fields.title}}</h1>
@@ -12,7 +12,6 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 export default {
   async asyncData({params}) {
     const data = await fetch(`https://contentful-endpoint.herokuapp.com/post/${params.article}`).then((res) => res.json())
-    console.log(data)
     return {post:data}
   }, 
   head() {
@@ -40,6 +39,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+body {
+  margin: 0;
+}
 </style>
