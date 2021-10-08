@@ -8,7 +8,7 @@
         <div class="content">
           <h4>{{post.fields.title}}</h4>
           <div v-html="htmlPost(post.fields.excerpt)" class="content__inner"></div>
-           <nuxt-link class="cta" :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">Read More</nuxt-link>
+           <nuxt-link class="cta" :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`"><span class="sr-only">Learn more about {{post.fields.title}}</span><span>Read More</span></nuxt-link>
         </div>
       
     </div>
@@ -82,7 +82,6 @@ export default {
 
       p {
         font-size: 15px;
-        color: #888;
         margin-top: 0.5em;
         line-height: 1.8;
         margin-bottom: 2em;
@@ -123,6 +122,16 @@ export default {
       width: 100%; height: 100%;
     
     }
+  }
+
+  .sr-only {
+    clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
   }
 
   @media(min-width: $bp-md) {
