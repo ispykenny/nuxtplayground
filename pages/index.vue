@@ -2,11 +2,13 @@
   <div class="inner posts" >
     <div v-for="post in allPosts.items" :key="post.sys.id" class="posts__el">
       <nuxt-link  :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">
-        <img :src="post.fields.featuredImage.fields.file.url" :alt="`${post.fields.title} preview`"/>
+        <div class="preview" :style="`padding-bottom:${post.fields.featuredImage.fields.file.details.image.height / post.fields.featuredImage.fields.file.details.image.width * 100}%`">
+          <img :src="post.fields.featuredImage.fields.file.url" :alt="`${post.fields.title} preview`"/>
+        </div>
         <div class="content">
           <h4>{{post.fields.title}}</h4>
           <div v-html="htmlPost(post.fields.excerpt)" class="content__inner"></div>
-          <button>Read More</button>
+           <nuxt-link class="cta" :to="`/articles/${post.fields.title.toLowerCase().split(' ').join('-')}`">Read More</nuxt-link>
         </div>
       </nuxt-link>
     </div>
@@ -52,8 +54,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .posts {
+    padding-top: 5em;
     display: flex;
     flex-wrap: wrap;
 
@@ -62,23 +65,34 @@ export default {
     }
 
     &__el {
-      width: 48%;
-      margin-right: 4%;
+      width: 100%;
+      margin-bottom: 2em;
       background: #fff;
+      border-radius: 7px;
+      overflow: hidden;
 
       .content {
-        padding: 1em;
+        padding: 2em;
       }
 
       h4 {
-        margin-top: 0;
+        margin: 0;
+        font-size: 1.2em;
+      }
+
+      p {
+        font-size: 15px;
+        color: #888;
+        margin-top: 0.5em;
+        line-height: 1.8;
+        margin-bottom: 2em;
       }
 
       &:nth-child(2n) {
         margin-right: 0;
       }
 
-      a {
+      a:not(.cta) {
         background: white;
         display: inline-block;
         text-decoration: none;
@@ -88,4 +102,33 @@ export default {
     }
   
   } 
+
+  .cta {
+    background-color: #444;
+    color: white;
+    padding: 0.7em 2em;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .preview {
+    position: relative;
+    background: #eee;
+
+    img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    
+    }
+  }
+
+  @media(min-width: $bp-md) {
+    .posts__el {
+      width: 48%;
+      margin-right: 4%;
+    }
+  }
 </style>

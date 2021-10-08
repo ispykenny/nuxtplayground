@@ -1,6 +1,6 @@
 <template>
   <div class="inner">
-    <div><nuxt-link to="/">Go Back</nuxt-link></div>
+    <div class="back-link"><nuxt-link to="/">Go Back</nuxt-link></div>
     <img :src="article.fields.featuredImage.fields.file.url" :alt="`${article.fields.title} preview`"/>
     <h1>{{article.fields.title}}</h1>
     <div v-html="thePost(article.fields.article)"></div>
@@ -39,8 +39,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-body {
-  margin: 0;
+<style lang="scss" >
+.back-link {
+  padding: 1em;
 }
+
 </style>

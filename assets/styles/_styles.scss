@@ -1,0 +1,37 @@
+$grid-breakpoints: (
+  sm: "580px",
+  md: "767px",
+  lg: "992px",
+  xl: "1199px",
+  xxl: "1440px",
+);
+
+.inner {
+  max-width: 1640px;
+  width: 90%;
+  margin: auto ; 
+}
+
+.inner-narrow {
+  max-width: 1140px;
+  margin: auto;
+  width: 90%;
+}
+
+img {
+  width: 100%;
+}
+
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f4f4f4;
+}
+
+$bp-sm: map-get($grid-breakpoints, "sm");
+$bp-md: map-get($grid-breakpoints, "md");
+$bp-lg: map-get($grid-breakpoints, "lg");
+$bp-xl: map-get($grid-breakpoints, "xl");
+$bp-xxl: map-get($grid-breakpoints, "xxl");
+
